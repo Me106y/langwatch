@@ -25,13 +25,13 @@
 		"@langwatch/handled-error": "workspace:*",
 		"@langwatch/observability": "workspace:*",
 		"@opentelemetry/api": "^1.9.1",
-		"hono": "^4.12.27",
+		"hono": "^4.12.34",
 		"hono-openapi": "^0.4.8",
 		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@types/node": "^26.0.1",
 		"typescript": "^6.0.3",
-		"vitest": "^4.1.9"
+		"vitest": "^4.1.10"
 	}
 }
