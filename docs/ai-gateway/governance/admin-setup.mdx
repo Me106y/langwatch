@@ -282,8 +282,8 @@ helpers that mint a personal virtual key and fire a real completion
 through your local Go gateway.
 
 ```bash
-# 1. Bring up the stack (postgres + redis + app + gateway)
-make dev
+# 1. Bring up the stack (postgres + redis + clickhouse + app + workers)
+make quickstart all-local
 make service svc=aigateway   # in a second terminal
 
 # 2. Sign up a persona-4 admin (uses /api/auth/sign-up/email)

@@ -104,7 +104,7 @@ jobs:
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
-      - run: go test -count=1 -race ./services/aigateway/... ./services/nlpgo/... ./pkg/... ./tools/migrationorder/... ./tools/thuishaven/... ./tools/herrgen/...
+      - run: go test -count=1 -race ./services/aigateway/... ./services/nlpgo/... ./pkg/... ./tools/migrationorder/... ./tools/thuishaven/... ./tools/herrgen/... ./tools/docscheck/...
 
   lint:
     needs: changes
@@ -147,7 +147,7 @@ jobs:
           args: >-
             --disable=funlen,gocognit,revive
             ./services/aigateway/... ./services/nlpgo/... ./pkg/... ./cmd/...
-            ./tools/migrationorder/... ./tools/herrgen/...
+            ./tools/migrationorder/... ./tools/herrgen/... ./tools/docscheck/...
 
       # funlen / gocognit / revive encode house rules over a codebase that
       # predates them (331 pre-existing hits), so they are gated on new and
@@ -182,7 +182,7 @@ jobs:
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
-      - run: go vet ./services/aigateway/... ./services/nlpgo/... ./pkg/... ./cmd/... ./tools/migrationorder/... ./tools/thuishaven/... ./tools/herrgen/...
+      - run: go vet ./services/aigateway/... ./services/nlpgo/... ./pkg/... ./cmd/... ./tools/migrationorder/... ./tools/thuishaven/... ./tools/herrgen/... ./tools/docscheck/...
 
   # packages/handled-error/src/codes.generated.ts mirrors the services' herr
   # codes; the TypeScript presentation registry is keyed off it, so a Go code
