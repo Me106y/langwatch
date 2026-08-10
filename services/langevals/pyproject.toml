@@ -81,6 +81,28 @@ override-dependencies = [
     "json-repair>=0.60.1",
 ]
 
+# Transitive-dependency security floors. These only raise a lower bound, so a
+# consumer that caps below them surfaces as a resolution error rather than
+# being silently forced onto an incompatible version.
+constraint-dependencies = [
+    "pillow>=12.3.0",  # security: 13 pillow advisories (decoder overflows, TiffImagePlugin DoS)
+    "litellm>=1.84.0",  # security: 11 litellm advisories incl. two CRITICAL auth bypasses
+    "nltk>=3.10.0",  # security: nltk advisories, reached via rouge-score
+    "pyasn1>=0.6.4",  # security: pyasn1 advisories, via pyasn1-modules/ldap3/rsa
+    "aiohttp>=3.14.3",  # security: aiohttp advisories
+    "cryptography>=50.0.0",  # security: cryptography advisory
+    "h2>=4.4.1",  # security: h2 advisory (#2065)
+    "setuptools>=83.0.0",  # security: setuptools advisory
+    # Keep the langchain 0.x line. langchain-community 0.3.x still imports
+    # langchain_core.tracers.langchain_v1, which core 1.x removed, so letting
+    # litellm's openai>=2.20 requirement drag core to 1.x breaks collection.
+    # langchain-openai 0.3.34+ permits openai 2.x against a 0.3.x core, which
+    # is what satisfies litellm without crossing the major.
+    "langchain-core>=0.3.78,<1.0.0",
+    "langchain-openai>=0.3.34,<0.4.0",
+    "langchain<1.0.0",
+]
+
 [tool.uv.workspace]
 members = [
     "langevals_core",
