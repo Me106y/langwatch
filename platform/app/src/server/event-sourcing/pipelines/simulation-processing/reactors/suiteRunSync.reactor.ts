@@ -1,4 +1,5 @@
 import { createLogger } from "@langwatch/observability";
+import { mapStatus } from "../../../../simulations/simulation-run.mappers";
 import { isSuiteSetId } from "../../../../suites/suite-set-id";
 import type {
   ReactorContext,
@@ -89,7 +90,11 @@ export function createSuiteRunSyncReactor(
             batchRunId: foldState.BatchRunId,
             scenarioRunId: foldState.ScenarioRunId,
             scenarioId: foldState.ScenarioId,
-            status: foldState.Status,
+            // Normalize before crossing the pipeline boundary: a historical
+            // fold state read back from ClickHouse can still carry the
+            // non-enum "FAILURE" string, and the suite fold's status ladder
+            // is written against `ScenarioRunStatus` members (#6834).
+            status: mapStatus(foldState.Status),
             verdict: foldState.Verdict ?? undefined,
             durationMs: foldState.DurationMs ?? undefined,
             reasoning: foldState.Reasoning ?? undefined,
