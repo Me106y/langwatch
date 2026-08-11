@@ -503,7 +503,7 @@ describe("simulationRunStateFoldProjection", () => {
       expect(state.FinishedAt).toBe(3000);
     });
 
-    it("sets FAILURE status for failure verdict", () => {
+    it("sets FAILED status for failure verdict (#6834 — FAILED is the enum member, FAILURE never was)", () => {
       const state = foldEvents([
         createRunStartedEvent(),
         createRunFinishedEvent({
@@ -517,12 +517,15 @@ describe("simulationRunStateFoldProjection", () => {
         }),
       ]);
 
-      expect(state.Status).toBe("FAILURE");
+      expect(state.Status).toBe("FAILED");
       expect(state.Verdict).toBe("failure");
       expect(state.Error).toBe("Something went wrong");
     });
 
-    it("sets FAILURE status for inconclusive verdict", () => {
+    // DELIBERATE (#6834): inconclusive still folds to a failed status until
+    // the SDK can actually emit it truthfully (langwatch/scenario#886/#889);
+    // once that lands, this arm decides what INCONCLUSIVE means platform-side.
+    it("sets FAILED status for inconclusive verdict", () => {
       const state = foldEvents([
         createRunStartedEvent(),
         createRunFinishedEvent({
@@ -535,7 +538,7 @@ describe("simulationRunStateFoldProjection", () => {
         }),
       ]);
 
-      expect(state.Status).toBe("FAILURE");
+      expect(state.Status).toBe("FAILED");
       expect(state.Verdict).toBe("inconclusive");
     });
 
@@ -550,13 +553,24 @@ describe("simulationRunStateFoldProjection", () => {
       expect(state.Status).toBe("ERROR");
     });
 
-    it("defaults to FAILURE when no verdict and no explicit status", () => {
+    it("normalizes a legacy explicit FAILURE status to FAILED", () => {
+      const state = foldEvents([
+        createRunStartedEvent(),
+        createRunFinishedEvent({
+          status: "FAILURE",
+        }),
+      ]);
+
+      expect(state.Status).toBe("FAILED");
+    });
+
+    it("defaults to FAILED when no verdict and no explicit status", () => {
       const state = foldEvents([
         createRunStartedEvent(),
         createRunFinishedEvent({}),
       ]);
 
-      expect(state.Status).toBe("FAILURE");
+      expect(state.Status).toBe("FAILED");
     });
   });
 
@@ -1076,7 +1090,7 @@ describe("simulationRunStateFoldProjection finalized-status guard", () => {
         ]);
 
         expect(state.Status).not.toBe("IN_PROGRESS");
-        expect(state.Status).toBe("FAILURE");
+        expect(state.Status).toBe("FAILED");
         expect(state.FinishedAt).toBe(3000);
       });
     });
