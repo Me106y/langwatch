@@ -329,7 +329,7 @@ function BillingEventRow({
       <Table.Cell>
         {row.traceId && projectSlug ? (
           <Link
-            href={`/${projectSlug}/messages/${row.traceId}`}
+            href={`/${projectSlug}/traces/${row.traceId}`}
             fontFamily="mono"
             fontSize="xs"
           >
