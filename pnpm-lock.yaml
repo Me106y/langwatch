@@ -128,8 +128,8 @@ importers:
         specifier: ^17.0.33
         version: 17.0.35
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260705.1
-        version: 7.0.0-dev.20260705.1
+        specifier: 7.0.0-dev.20260707.2
+        version: 7.0.0-dev.20260707.2
       ai:
         specifier: ^6.0.161
         version: 6.0.217(zod@4.4.3)
@@ -955,8 +955,8 @@ importers:
         specifier: ^8.18.1
         version: 8.18.1
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260705.1
-        version: 7.0.0-dev.20260705.1
+        specifier: 7.0.0-dev.20260707.2
+        version: 7.0.0-dev.20260707.2
       '@vitejs/plugin-react':
         specifier: ^6.0.3
         version: 6.0.3(babel-plugin-react-compiler@1.0.0)(vite@8.1.2(@types/node@26.1.1)(esbuild@0.28.1)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
@@ -1266,8 +1266,8 @@ importers:
         specifier: ^2.4.9
         version: 2.4.9
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260705.1
-        version: 7.0.0-dev.20260705.1
+        specifier: 7.0.0-dev.20260707.2
+        version: 7.0.0-dev.20260707.2
       '@vercel/otel':
         specifier: ^1.13.0
         version: 1.14.2(@opentelemetry/api-logs@0.205.0)(@opentelemetry/api@1.9.1)(@opentelemetry/instrumentation@0.219.0(@opentelemetry/api@1.9.1))(@opentelemetry/resources@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.205.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.8.0(@opentelemetry/api@1.9.1))
@@ -1593,12 +1593,9 @@ packages:
     resolution: {integrity: sha512-0cjRaEdlVoOrsNb9pP5q1Syyc8pXw5xSj2Np2ryReRTr9FppIIRVSdZK4lbnfmc2Hvgux/xBOUU6baB7z8//uA==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/core@3.977.5':
-    resolution: {integrity: sha512-O5otOc1c6UZh5HsHAaPdYBcUUR9HL6mtnKqvc8nxN/CKDGUBUpsdh0q8K04Uz/dd1i0TaGyIQuQNqoO7+ad2TQ==}
+  '@aws-sdk/core@3.977.6':
+    resolution: {integrity: sha512-QiaJV4/zDrB4ZY2mfeSXSzSTc36W16sZXcGz+SPFk0CJ26gziO0cS+4LjJUMAbdeeBOvS0k0Aq1cZpfGdUXxSw==}
     engines: {node: '>=20.0.0'}
-    deprecated: |-
-      Deprecated due to Document number parsing bug in JSON, see
-        https://github.com/aws/aws-sdk-js-v3/issues/8246. Newer version available.
 
   '@aws-sdk/credential-provider-env@3.972.55':
     resolution: {integrity: sha512-Ah36tYkqyaVnaHkx7VseoTYrHUmwgBps3V+wnrC1idhIIMGlviH0FtrX9EIPdAlVHvXC7FQZLhmHBRz+pLaiWg==}
@@ -1644,16 +1641,16 @@ packages:
     resolution: {integrity: sha512-f8SREKL6uQUYt8fwreiUgaAJQ31/M+UkWfJMDY/TBJC5FdHgNzxuvRFeZ9eMbnf2ydQ3p4pcKEhaLk35DDIPxw==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/middleware-websocket@3.972.48':
-    resolution: {integrity: sha512-1BYTN+c0J/n5HfoDl3IR2Cjhfp2coByofX+gOh8HhyXda1HP7oGAUI/uyKSn4Xc+rrvVcsSROTVF1ZRBs07ARQ==}
+  '@aws-sdk/middleware-websocket@3.972.49':
+    resolution: {integrity: sha512-wGYJvu1/stdWuzGcNyh44u8aY7ArU8XFrMesBlzIYn70HWVCRBNEngQexDuPIMu0NEgsKGKmTc0uvnS/bF7KWw==}
     engines: {node: '>= 14.0.0'}
 
   '@aws-sdk/nested-clients@3.997.34':
     resolution: {integrity: sha512-Y9REVrSwmLM+Qy6sZJ7ofMC2S3Hr3tPP/4CzL5U1olPP7OGoF+6+Px0E49cVQBtSxJtyeLJMf0UaBErfeSahAA==}
     engines: {node: '>=20.0.0'}
 
-  '@aws-sdk/nested-clients@3.997.40':
-    resolution: {integrity: sha512-hEdHT0PBR4fkGxWhwKG5EtEYKnAM7HKkp0vD10ufk4YcXejH4r4q6G/XhPzjUc6Yxo5kBS2vHg7llj4ViR9VTQ==}
+  '@aws-sdk/nested-clients@3.997.41':
+    resolution: {integrity: sha512-RDHqPGQWlF6tatA/Tp3rg6oIwtgN9IVderxE+9av2Y93Dfyu+mO1hZ5Bu2jpfZg2rwdNbsssnwM+sLafIczMlQ==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/s3-request-presigner@3.1080.0':
@@ -5178,50 +5175,50 @@ packages:
     resolution: {integrity: sha512-y+vH7QE8ycjoa0bWciFg7OpFcipUuem1ujhrdLtq1gByKwfbC7bPeKsiny9e0urg93DqwGcHey+bGRKCnF1nZQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-OemjoGm+5nLCaUyL0zwWcSDhyQYQnO6/DcOidm2EzOqK7dYXgaCerDFUAz6iOGjOFtTAQFU50CV+ZbtUxodk9A==}
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-wny2pgKjGbiZtnOIHVa3tXC1UfDqxNEFzyPGmiqybedG8hipG2Nfp0l5UxbaKCjkLacUpH/W5bP2hBOMVhCOzg==}
     engines: {node: '>=16.20.0'}
     cpu: [arm64]
     os: [darwin]
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-jYEsBtcVOin3ARa2xAkwM21KOlmr9s3FGxcY28gESigXPJOGooRaxZlJ45tFM3TczCMEGmML88XCXuQaH2z1kw==}
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-Afc7M5zOwo+GpfcYwz5Z8HMB2tPVsui7nNIqEuuFB73MPdVqNn/Wmpe4tP4MRri0AtJnJknoHBaTJ/VDAp/Jhw==}
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [darwin]
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-kmWaZkuqb5RGTHt4AFIdPJ53/wO8vuZbmjSizNFNpvx1owYgQ8QZNu51zKfLQZbMs2FR7NAzVuQT14mhBaQW5Q==}
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-iITBa2WjjTI5N9t5l7Z4KoOSI+2zBlhbvFzsD/f8qX8QoKjz/Y4DPyBDgezYi8nkqjjksbgSOJ3/ykzhwrB9cg==}
     engines: {node: '>=16.20.0'}
     cpu: [arm64]
     os: [linux]
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-abTOyfyx5SW5szf1YeZf5K9vUWEE7nbbqUUthl8OgRrFrJzlZnDIRf/FV0h6QGqQIN7XTf8lgKjdFe4piNFLww==}
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-hJm/UOqZTr9FHmR7uNm8VGX4oKtfWk0Jem0zPeJFNC8ckGUfSBueyiEYMZB+XmRc1aG4x1E46y3CplP4CLHvGQ==}
     engines: {node: '>=16.20.0'}
     cpu: [arm]
     os: [linux]
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-oNA9I3MFLqdFVbwolnsFObjrQ1AsBXc4WXPcNyKcoaauAmFTwjxOBPKtiaqFKj4j4Abum7KvjVj0fgBaO5gRPA==}
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-du0dzi6y97Po5vDNdPJTyyijHCpaS22JLRnKZEJXBDaO9gCIymOv/5QQokFRuOlQm0bWl3i9PF4OVdGP6uAOQA==}
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [linux]
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-K6hTgnqAEBbrIGH6feXM//FHbk0ilSAQDpLct+3IHfd+tg2sKop5lK2rTZkl/ptHM7Vlh0CF77m0RL73an+oAw==}
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-SsAwfhyHJ1akgBc+99z4+hwdbHsdWaKB8EwCNIMA6JfSLMeUjffrYvxu+vfMyxVtOVOz7RrRXRoiDiu4a2sCtg==}
     engines: {node: '>=16.20.0'}
     cpu: [arm64]
     os: [win32]
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-gAwPJgfQWtJnZlMrJ8NCA+vdI42N+XLev+jqZnpcMqt+Jd2zMtoNpppHB0I6URMVys+R2WpMiOOSlHcnvOMyTQ==}
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-DL4u27stv0fo71sVhOzHSwE+YMZsbBijVI+kg5dLDLilSH79WFTJ8RSQ46vJrCMt+Gjlv/JOZP1PuLJDfioYeQ==}
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [win32]
 
-  '@typescript/native-preview@7.0.0-dev.20260705.1':
-    resolution: {integrity: sha512-mXc3tDkRCe8UinMcl5yqUfLAP5Vk5MFuZNNaNsrwRehu1d+lnL+Zu+K7g6kSMOV8NOY9bn9tGFN4/cqhlK4VwA==}
+  '@typescript/native-preview@7.0.0-dev.20260707.2':
+    resolution: {integrity: sha512-oUGp+Rep/hqMhPunyinsALUwSlzHINSxitifPiSaeqoKOKD2OlR9NE3TaPqwsl4NlGslsOSUXI1JotWQzpYCPg==}
     engines: {node: '>=16.20.0'}
     hasBin: true
 
@@ -11208,11 +11205,11 @@ snapshots:
 
   '@aws-sdk/client-bedrock-runtime@3.1080.0':
     dependencies:
-      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/core': 3.977.6
       '@aws-sdk/credential-provider-node': 3.972.64
       '@aws-sdk/eventstream-handler-node': 3.972.31
       '@aws-sdk/middleware-eventstream': 3.972.26
-      '@aws-sdk/middleware-websocket': 3.972.48
+      '@aws-sdk/middleware-websocket': 3.972.49
       '@aws-sdk/token-providers': 3.1080.0
       '@aws-sdk/types': 3.974.2
       '@smithy/core': 3.31.1
@@ -11292,7 +11289,7 @@ snapshots:
       bowser: 2.14.1
       tslib: 2.8.1
 
-  '@aws-sdk/core@3.977.5':
+  '@aws-sdk/core@3.977.6':
     dependencies:
       '@aws-sdk/types': 3.974.2
       '@aws-sdk/xml-builder': 3.972.37
@@ -11413,9 +11410,9 @@ snapshots:
       '@smithy/types': 4.16.1
       tslib: 2.8.1
 
-  '@aws-sdk/middleware-websocket@3.972.48':
+  '@aws-sdk/middleware-websocket@3.972.49':
     dependencies:
-      '@aws-sdk/core': 3.977.5
+      '@aws-sdk/core': 3.977.6
       '@aws-sdk/types': 3.974.2
       '@smithy/core': 3.31.1
       '@smithy/fetch-http-handler': 5.6.13
@@ -11435,9 +11432,9 @@ snapshots:
       '@smithy/types': 4.16.1
       tslib: 2.8.1
 
-  '@aws-sdk/nested-clients@3.997.40':
+  '@aws-sdk/nested-clients@3.997.41':
     dependencies:
-      '@aws-sdk/core': 3.977.5
+      '@aws-sdk/core': 3.977.6
       '@aws-sdk/signature-v4-multi-region': 3.996.43
       '@aws-sdk/types': 3.974.2
       '@smithy/core': 3.31.1
@@ -11473,8 +11470,8 @@ snapshots:
 
   '@aws-sdk/token-providers@3.1080.0':
     dependencies:
-      '@aws-sdk/core': 3.976.0
-      '@aws-sdk/nested-clients': 3.997.40
+      '@aws-sdk/core': 3.977.6
+      '@aws-sdk/nested-clients': 3.997.41
       '@aws-sdk/types': 3.974.2
       '@smithy/core': 3.31.1
       '@smithy/types': 4.16.1
@@ -15559,36 +15556,36 @@ snapshots:
       '@typescript-eslint/types': 8.58.1
       eslint-visitor-keys: 5.0.1
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260705.1':
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260707.2':
     optional: true
 
-  '@typescript/native-preview@7.0.0-dev.20260705.1':
+  '@typescript/native-preview@7.0.0-dev.20260707.2':
     optionalDependencies:
-      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260705.1
-      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260705.1
+      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260707.2
+      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260707.2
 
   '@typespec/ts-http-runtime@0.3.8':
     dependencies:
@@ -18659,7 +18656,7 @@ snapshots:
       isstream: 0.1.2
       jsonwebtoken: 9.0.3
       mime-types: 2.1.35
-      retry-axios: 2.6.0(axios@1.19.0)
+      retry-axios: 2.6.0(axios@1.19.0(debug@4.4.3))
       tough-cookie: 4.1.4
     transitivePeerDependencies:
       - supports-color
@@ -21581,7 +21578,7 @@ snapshots:
 
   ret@0.5.0: {}
 
-  retry-axios@2.6.0(axios@1.19.0):
+  retry-axios@2.6.0(axios@1.19.0(debug@4.4.3)):
     dependencies:
       axios: 1.19.0(debug@4.4.3)
 
