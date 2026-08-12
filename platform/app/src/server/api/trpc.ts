@@ -37,6 +37,7 @@ interface CreateNextContextOptions {
 }
 
 import { auditLog } from "@ee/audit-log/auditLog";
+import type { AuthzPermission } from "@langwatch/authz";
 import { HandledError, ValidationError } from "@langwatch/handled-error";
 import { createLogger } from "@langwatch/observability";
 import { getLogLevelFromStatusCode } from "@langwatch/observability/request";
@@ -51,7 +52,6 @@ import { ModelNotConfiguredError } from "~/server/modelProviders/modelNotConfigu
 import { ModelProviderDisabledError } from "~/server/modelProviders/modelProviderDisabledError";
 import type { NextApiRequest, NextApiResponse } from "~/types/next-stubs";
 import { captureException, toError } from "../../utils/posthogErrorCapture";
-import type { AuthzPermission } from "../authz/registry";
 import { checkPermissionV2 } from "../authz/trpc-middleware";
 import type { OpsScope, PermissionMiddleware } from "./rbac";
 
