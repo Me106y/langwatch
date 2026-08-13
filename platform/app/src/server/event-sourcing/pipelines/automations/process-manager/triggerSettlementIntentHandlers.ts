@@ -1,5 +1,9 @@
 import { slackDeliveryMethodOf } from "@langwatch/automations/providers/slack";
-import type { WebhookMethod } from "@langwatch/automations/providers/webhook";
+import {
+  type WebhookBodyFormat,
+  type WebhookMethod,
+  webhookContentTypeFor,
+} from "@langwatch/automations/providers/webhook";
 import { renderTriggerEmail } from "@langwatch/automations/templating/renderEmail";
 import {
   renderTriggerSlack,
@@ -100,6 +104,8 @@ interface ActionParams {
   headersEncrypted?: string;
   headers?: Record<string, string>;
   bodyTemplate?: string | null;
+  /** What the rendered body is, and so its Content-Type. Absent = `json`. */
+  bodyFormat?: WebhookBodyFormat;
   /** Optional HMAC signing (ADR-040 §3), stored the same way as the header
    *  values. Absent means the delivery goes out unsigned. */
   signingSecretEncrypted?: string;
@@ -590,11 +596,14 @@ async function dispatchNotifyDigest({
           retryable: false,
         });
       }
-      // ADR-040 §2: Liquid → JSON.parse, falling back to the framework
-      // default envelope on any template failure.
+      // ADR-040 §2: a JSON body is Liquid → JSON.parse, falling back to the
+      // framework default envelope on any template failure; a text body is
+      // sent exactly as it renders.
+      const bodyFormat = params.bodyFormat ?? "json";
       const rendered = await renderWebhookBody({
         template: params.bodyTemplate ?? null,
         context: buildContext(),
+        format: bodyFormat,
       });
       if (rendered.errors.length > 0) {
         logger.warn(
@@ -618,6 +627,7 @@ async function dispatchNotifyDigest({
         headers: decryptWebhookHeaders(params),
         signingSecrets: decryptWebhookSigningSecrets(params),
         body: rendered.body,
+        contentType: webhookContentTypeFor(bodyFormat),
         triggerName: trigger.name,
       });
       didSend = true;
