@@ -93,11 +93,15 @@ constraint-dependencies = [
     "cryptography>=50.0.0",  # security: cryptography advisory
     "h2>=4.4.1",  # security: h2 advisory (#2065)
     "setuptools>=83.0.0",  # security: setuptools advisory
-    # Keep the langchain 0.x line. langchain-community 0.3.x still imports
-    # langchain_core.tracers.langchain_v1, which core 1.x removed, so letting
-    # litellm's openai>=2.20 requirement drag core to 1.x breaks collection.
-    # langchain-openai 0.3.34+ permits openai 2.x against a 0.3.x core, which
-    # is what satisfies litellm without crossing the major.
+    "torch>=2.13.0",  # security: torch advisory (#2025)
+    # The langchain line is pinned to 0.x by ragas, not by choice. Every 1.x
+    # family member needs langchain-core >=1.2.31, and core 1.x removed
+    # langchain_core.tracers.langchain_v1, which langchain-community only
+    # stopped importing at 0.4.2. But community 0.4.2 dropped
+    # langchain_community.chat_models.vertexai, which ragas imports
+    # unconditionally in ragas/llms/base.py, and 0.4.3 is its newest release.
+    # Both legs fail at import, verified with `pytest --collect-only`. Tracked
+    # in #3922; revisit when ragas publishes a release that drops that import.
     "langchain-core>=0.3.78,<1.0.0",
     "langchain-openai>=0.3.34,<0.4.0",
     "langchain<1.0.0",
