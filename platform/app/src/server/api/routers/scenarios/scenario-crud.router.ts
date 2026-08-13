@@ -21,6 +21,9 @@ const createScenarioSchema = projectSchema.extend({
   // default (scenarios.user_simulator / scenarios.judge).
   simulatorModel: z.string().nullish(),
   judgeModel: z.string().nullish(),
+  // Turn config (ADR-015); null clears back to SDK default.
+  maxTurns: z.number().int().min(1).max(100).nullish(),
+  minTurns: z.number().int().min(0).max(100).nullish(),
 });
 
 const updateScenarioSchema = projectSchema.extend({
@@ -31,6 +34,8 @@ const updateScenarioSchema = projectSchema.extend({
   labels: z.array(z.string()).optional(),
   simulatorModel: z.string().nullish(),
   judgeModel: z.string().nullish(),
+  maxTurns: z.number().int().min(1).max(100).nullish(),
+  minTurns: z.number().int().min(0).max(100).nullish(),
 });
 
 /**

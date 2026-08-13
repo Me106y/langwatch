@@ -181,6 +181,8 @@ async function executeScenario(jobData: ChildProcessJobData): Promise<void> {
         judgeAgent,
       ],
       verbose,
+      ...(scenario.maxTurns != null && { maxTurns: scenario.maxTurns }),
+      ...(scenario.minTurns != null && { minTurns: scenario.minTurns }),
       metadata: {
         langwatch: {
           targetReferenceId: target.referenceId,
