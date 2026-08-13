@@ -555,8 +555,6 @@ const LEGACY_INERT: string[] = [
   "specs/scenarios/scenario-deletion.feature",
   "specs/scenarios/scenario-drawer-close-on-save.feature",
   "specs/scenarios/scenario-editor-new-agent-flow.feature",
-  "specs/scenarios/scenario-editor.feature",
-  "specs/scenarios/scenario-execution.feature",
   "specs/scenarios/scenario-library.feature",
   "specs/scenarios/stalled-scenario-runs.feature",
   "specs/secrets/secrets-manager.feature",

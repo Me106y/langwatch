@@ -156,7 +156,6 @@ export function ScenarioForm({ defaultValues, formRef }: ScenarioFormProps) {
         />
       </VStack>
 
-      {/* ADVANCED Section (ADR-015) */}
       <AdvancedSection register={register} errors={errors} />
     </VStack>
   );
