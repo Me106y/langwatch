@@ -359,7 +359,7 @@ function SlackProjectConnection({
   projectName: string | null;
   canManage: boolean;
 }) {
-  const utils = api.useContext();
+  const utils = api.useUtils();
   const status = api.slackIntegration.getStatus.useQuery({ projectId });
   const census = api.slackIntegration.getLegacyTokenCensus.useQuery({
     projectId,

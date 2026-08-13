@@ -1,5 +1,5 @@
 import { Box, Button, HStack, Text, VStack } from "@chakra-ui/react";
-import { AlertType } from "@prisma/client";
+import { AlertType } from "~/generated/prisma/client";
 import { Lock, TrendingUp, Zap } from "lucide-react";
 import type { ConditionSource } from "../../logic/draftReducer";
 import { useAutomationStore } from "../../state/automationStore";

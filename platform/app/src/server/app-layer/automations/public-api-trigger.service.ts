@@ -7,8 +7,8 @@ import {
   slackDeliveryMethodOf,
 } from "@langwatch/automations/providers/slack";
 import { DEFAULT_WEBHOOK_CONTENT_TYPE } from "@langwatch/automations/providers/webhook";
-import type { AlertType, Prisma, Trigger } from "@prisma/client";
-import { TriggerAction, TriggerKind } from "@prisma/client";
+import type { AlertType, Prisma, Trigger } from "~/generated/prisma/client";
+import { TriggerAction, TriggerKind } from "~/generated/prisma/client";
 import { nanoid } from "nanoid";
 import { hasActionableTriggerFilters } from "~/server/filters/triggerFilter.matcher";
 import {

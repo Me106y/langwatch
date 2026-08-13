@@ -1034,7 +1034,7 @@ function OwnTokenNotice({
 }) {
   const [confirming, setConfirming] = useState(false);
   const { hasPermission } = useOrganizationTeamProject();
-  const utils = api.useContext();
+  const utils = api.useUtils();
   const switchOver = api.slackIntegration.switchToIntegration.useMutation({
     onSuccess: () => {
       setConfirming(false);

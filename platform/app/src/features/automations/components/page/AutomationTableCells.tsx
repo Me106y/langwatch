@@ -63,7 +63,7 @@ export function OwnSlackTokenNudge({
   canSwitch: boolean;
 }) {
   const [confirming, setConfirming] = useState(false);
-  const utils = api.useContext();
+  const utils = api.useUtils();
   const switchOver = api.slackIntegration.switchToIntegration.useMutation({
     onSuccess: () => {
       setConfirming(false);

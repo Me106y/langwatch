@@ -187,7 +187,7 @@ vi.mock("~/utils/api", () => ({
         useQuery: () => ({ data: { connected: false }, isLoading: false }),
       },
     },
-    useContext: () => ({
+    useUtils: () => ({
       automation: {
         getTriggerById: { invalidate: mockInvalidateTriggerById },
       },

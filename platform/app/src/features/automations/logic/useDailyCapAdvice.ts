@@ -1,4 +1,5 @@
 import type { NotificationCadence } from "@langwatch/automations/cadences";
+import { keepPreviousData } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { api } from "~/utils/api";
 import {
@@ -61,7 +62,7 @@ export function useDailyCapAdvice({
       enabled: relevant,
       retry: false,
       staleTime: 5 * 60_000,
-      keepPreviousData: true,
+      placeholderData: keepPreviousData,
       refetchOnWindowFocus: false,
     },
   );

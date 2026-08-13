@@ -10,7 +10,7 @@ import {
   type Project,
   type Team,
   TriggerAction,
-} from "@prisma/client";
+} from "~/generated/prisma/client";
 import { nanoid } from "nanoid";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { PrismaTriggerRepository } from "~/server/app-layer/automations/repositories/trigger.prisma.repository";

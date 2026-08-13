@@ -68,7 +68,7 @@ const switchCalls: { projectId: string; automationIds?: string[] }[] = [];
 
 vi.mock("~/utils/api", () => ({
   api: {
-    useContext: () => ({
+    useUtils: () => ({
       slackIntegration: {
         getLegacyTokenCensus: { invalidate: () => undefined },
       },

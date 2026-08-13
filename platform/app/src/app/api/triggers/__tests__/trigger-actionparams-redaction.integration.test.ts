@@ -11,7 +11,7 @@ import {
   type Team,
   TriggerAction,
   TriggerKind,
-} from "@prisma/client";
+} from "~/generated/prisma/client";
 import { nanoid } from "nanoid";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { graphAlertActionParamsSchema } from "~/server/app-layer/automations/graph-alert.builder";

@@ -14,7 +14,7 @@ import {
   type Project,
   type Team,
   TriggerAction,
-} from "@prisma/client";
+} from "~/generated/prisma/client";
 import { nanoid } from "nanoid";
 import {
   afterAll,

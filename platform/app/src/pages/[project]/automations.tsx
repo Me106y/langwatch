@@ -9,7 +9,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import type { Monitor, TriggerAction } from "@prisma/client";
 import { useMemo, useState } from "react";
 import {
   Calendar,
@@ -63,6 +62,7 @@ import { CLIENT_PROVIDERS } from "~/features/automations/providers/registry";
 import { showErrorToast } from "~/features/errors";
 import { LangyContextTarget } from "~/features/langy/components/LangyContextTarget";
 import { automationContextChip } from "~/features/langy/logic/langyContextChips";
+import type { Monitor, TriggerAction } from "~/generated/prisma/client";
 import { useDrawer } from "~/hooks/useDrawer";
 import { useOrganizationTeamProject } from "~/hooks/useOrganizationTeamProject";
 import { api, type RouterOutputs } from "~/utils/api";
@@ -125,7 +125,7 @@ function AutomationsPage() {
   const section = sectionFromPath(router.pathname);
   const details = sectionDetails[section];
   const basePath = project ? `/${project.slug}/automations` : "/auth/signin";
-  const trpcUtils = api.useContext();
+  const trpcUtils = api.useUtils();
 
   // Row pending a delete confirmation (#6716: deletion was immediate and
   // irreversible). Holding the row itself, not just its id, lets the dialog
@@ -1044,7 +1044,7 @@ function AutomationsPage() {
         }
         confirmLabel="Delete"
         tone="danger"
-        loading={deleteTriggerMutation.isLoading}
+        loading={deleteTriggerMutation.isPending}
         onConfirm={() => {
           if (pendingDelete) deleteTrigger(pendingDelete);
         }}

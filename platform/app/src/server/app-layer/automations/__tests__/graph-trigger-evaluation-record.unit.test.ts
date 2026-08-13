@@ -4,8 +4,8 @@
  * Binds specs/automations/evaluation-visibility.feature — the "An evaluation
  * is recorded on every check" rule.
  */
-import type { CustomGraph, Project, Trigger } from "@prisma/client";
-import { TriggerAction } from "@prisma/client";
+import type { CustomGraph, Project, Trigger } from "~/generated/prisma/client";
+import { TriggerAction } from "~/generated/prisma/client";
 import { describe, expect, it, vi } from "vitest";
 import type { TimeseriesResult } from "~/server/analytics/types";
 import {

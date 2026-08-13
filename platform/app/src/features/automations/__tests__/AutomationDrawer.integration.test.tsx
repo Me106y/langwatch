@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
-import { TriggerAction } from "@prisma/client";
+import { TriggerAction } from "~/generated/prisma/client";
 import {
   cleanup,
   fireEvent,
@@ -171,7 +171,7 @@ vi.mock("~/utils/api", () => ({
         useQuery: () => ({ data: undefined, isFetching: false, error: null }),
       },
     },
-    useContext: () => ({
+    useUtils: () => ({
       automation: {
         getTriggers: { invalidate: mockInvalidate },
         getTriggerById: { invalidate: mockGetTriggerByIdInvalidate },

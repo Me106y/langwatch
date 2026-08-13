@@ -31,7 +31,6 @@ import {
   type ReportTemplateContext,
   type TemplateContext,
 } from "@langwatch/automations/templating/templateContext";
-import { AlertType, TriggerAction, TriggerKind } from "@prisma/client";
 import { Mail, Send } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Dialog } from "~/components/ui/dialog";
@@ -51,6 +50,11 @@ import {
   readHandledError,
   showErrorToast,
 } from "~/features/errors";
+import {
+  AlertType,
+  TriggerAction,
+  TriggerKind,
+} from "~/generated/prisma/client";
 import { useDrawer } from "~/hooks/useDrawer";
 import type { FilterParam } from "~/hooks/useFilterParams";
 import { useFilterParams } from "~/hooks/useFilterParams";
@@ -233,7 +237,7 @@ export function AutomationDrawer({
 }) {
   const { project, organization, team } = useOrganizationTeamProject();
   const { closeDrawer, openDrawer } = useDrawer();
-  const queryClient = api.useContext();
+  const queryClient = api.useUtils();
   const { filterParams } = useFilterParams();
   const projectId = project?.id ?? "";
   const draft = useDraft();
@@ -1046,7 +1050,7 @@ export function AutomationDrawer({
         draft.source === "report" ? draft.report.sourceKind : undefined,
       // Lets a notify provider offer a "Send test" button inside its config.
       onTestFire,
-      testFireLoading: testFire.isLoading,
+      testFireLoading: testFire.isPending,
       // The latest test outcome, so a provider can render the result (HTTP
       // status / failure) inline next to its own test button.
       lastTestAttempt: testHistory[0] ?? null,
@@ -1067,7 +1071,7 @@ export function AutomationDrawer({
       draft.source,
       draft.report.sourceKind,
       onTestFire,
-      testFire.isLoading,
+      testFire.isPending,
       testHistory,
     ],
   );
@@ -1206,7 +1210,7 @@ export function AutomationDrawer({
                   <Button
                     variant="outline"
                     onClick={onTestFire}
-                    loading={testFire.isLoading}
+                    loading={testFire.isPending}
                     disabled={!configComplete}
                   >
                     <Send size={14} /> Send test
@@ -1226,7 +1230,7 @@ export function AutomationDrawer({
                   <Button
                     colorPalette="orange"
                     onClick={onSave}
-                    loading={upsert.isLoading}
+                    loading={upsert.isPending}
                     disabled={!canSave}
                   >
                     {labels.saveButton}

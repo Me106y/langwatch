@@ -1,7 +1,7 @@
 import { SLACK_BOT_TOKEN_KEPT } from "@langwatch/automations/providers/slack";
 import { WEBHOOK_HEADER_VALUE_KEPT } from "@langwatch/automations/providers/webhook";
 import { createLogger } from "@langwatch/observability";
-import { TriggerAction } from "@prisma/client";
+import { TriggerAction } from "~/generated/prisma/client";
 import { ZodEffects, ZodObject, type ZodTypeAny } from "zod";
 import {
   InvalidActionParamsError,
