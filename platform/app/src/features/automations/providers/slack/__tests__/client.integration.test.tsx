@@ -174,11 +174,11 @@ describe("SlackConfigForm authoring tiers", () => {
 
   describe("given a fresh block_kit draft", () => {
     describe("when the form first renders", () => {
-      it("shows the guided template gallery", () => {
+      it("shows the guided layout picker", () => {
         renderForm();
 
         expect(
-          screen.getByRole("button", { name: /use compact notice template/i }),
+          screen.getByRole("option", { name: /compact notice/i }),
         ).toBeInTheDocument();
       });
 
@@ -210,8 +210,8 @@ describe("SlackConfigForm authoring tiers", () => {
       renderForm({ onChangeSpy });
 
       fireEvent.click(
-        screen.getByRole("button", {
-          name: new RegExp(`use ${firstOption!.displayName} template`, "i"),
+        screen.getByRole("option", {
+          name: new RegExp(firstOption!.displayName, "i"),
         }),
       );
 
@@ -277,7 +277,7 @@ describe("SlackConfigForm authoring tiers", () => {
   });
 
   describe("when the author switches to plain text", () => {
-    it("reveals the plain text editor and drops the gallery", () => {
+    it("reveals the plain text editor and drops the layout picker", () => {
       renderForm();
 
       fireEvent.click(
@@ -288,7 +288,7 @@ describe("SlackConfigForm authoring tiers", () => {
 
       expect(screen.getByTestId("slack-text-editor")).toBeInTheDocument();
       expect(
-        screen.queryByRole("button", { name: /use compact notice template/i }),
+        screen.queryByRole("option", { name: /compact notice/i }),
       ).not.toBeInTheDocument();
     });
   });
@@ -363,10 +363,8 @@ describe("SlackConfigForm delivery method", () => {
       renderForm({ initial: botSlice({ botTokenAlreadySet: true }) });
 
       expect(
-        screen.getByRole("button", {
-          name: /use eval failure banner template/i,
-        }),
-      ).toBeEnabled();
+        screen.getByRole("option", { name: /eval failure banner/i }),
+      ).not.toHaveAttribute("aria-disabled");
     });
   });
 });
