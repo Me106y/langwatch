@@ -10,10 +10,10 @@ import { resolver } from "hono-openapi/zod";
 import { z } from "zod";
 import type { AuthMiddlewareVariables } from "~/app/api/middleware/auth";
 import { badRequestSchema } from "~/app/api/shared/schemas";
-import {
-  type Prisma,
-  type Trigger,
-  TriggerKind,
+import type {
+  AlertType,
+  Trigger,
+  TriggerAction,
 } from "~/generated/prisma/client";
 import { createProjectApp, requires } from "~/server/api/security";
 import { validator as zValidator } from "~/server/api/validation";
