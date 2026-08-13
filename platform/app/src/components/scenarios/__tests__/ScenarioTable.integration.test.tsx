@@ -39,6 +39,8 @@ function makeScenario(
     labels: [],
     simulatorModel: null,
     judgeModel: null,
+    maxTurns: null,
+    minTurns: null,
     lastUpdatedById: null,
     archivedAt: null,
     createdAt: now,
