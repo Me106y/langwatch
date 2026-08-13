@@ -59,6 +59,7 @@ Document **important technical and architectural decisions** — context, trade-
 | [078](./078-langy-user-turn-controls.md)                          | Langy user-initiated turn controls — stop for real, continue, resume-on-refresh             | Accepted                                          |
 | [079](./079-card-selection-is-deterministic.md)                   | Card selection is deterministic — the model supplies data, never presentation (amended 2026-07-22) | Accepted                                          |
 | [094](./094-simulation-execution-on-process-manager-substrate.md) | Simulation execution on the process-manager substrate — durable execute/cancel intents, stall & cancel-grace watchdogs | Accepted |
+| [095](./095-post-event-work-subscribers-and-process-managers.md) | Post-event work is subscribers and process managers — the reactor vocabulary is retired | Accepted |
 
 ## When to Write an ADR
 
