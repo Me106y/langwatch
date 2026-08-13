@@ -11,10 +11,15 @@ import { FinishRunCommand } from "../finishRun.command";
 function makeDeps(
   overrides: Partial<FinishRunDeps> = {},
 ): FinishRunDeps & { loadPriorEvents: ReturnType<typeof vi.fn> } {
+  // The spread widens `loadPriorEvents` to a union of the mock and the plain
+  // function type, which the intersection annotation refuses; every caller
+  // passes a vi.fn, so the assertion restores what is actually there.
   return {
-    loadPriorEvents: vi.fn().mockResolvedValue([]),
+    loadPriorEvents: vi
+      .fn<FinishRunDeps["loadPriorEvents"]>()
+      .mockResolvedValue([]),
     ...overrides,
-  };
+  } as FinishRunDeps & { loadPriorEvents: ReturnType<typeof vi.fn> };
 }
 
 function makeCommand(overrides: Partial<FinishRunCommandData> = {}): {
@@ -88,7 +93,7 @@ describe("FinishRunCommand", () => {
             messages: [],
             traceIds: ["trace-1", "trace-2"],
           },
-        } as SimulationProcessingEvent,
+        } as unknown as SimulationProcessingEvent,
         {
           type: SIMULATION_RUN_EVENT_TYPES.TEXT_MESSAGE_END,
           data: {
@@ -98,7 +103,7 @@ describe("FinishRunCommand", () => {
             content: "hi",
             traceId: "trace-2",
           },
-        } as SimulationProcessingEvent,
+        } as unknown as SimulationProcessingEvent,
         {
           type: SIMULATION_RUN_EVENT_TYPES.TEXT_MESSAGE_END,
           data: {
@@ -108,7 +113,7 @@ describe("FinishRunCommand", () => {
             content: "bye",
             traceId: "trace-3",
           },
-        } as SimulationProcessingEvent,
+        } as unknown as SimulationProcessingEvent,
         {
           type: SIMULATION_RUN_EVENT_TYPES.MESSAGE_SNAPSHOT,
           data: {
@@ -116,7 +121,7 @@ describe("FinishRunCommand", () => {
             messages: [],
             traceIds: ["trace-1"],
           },
-        } as SimulationProcessingEvent,
+        } as unknown as SimulationProcessingEvent,
       ];
       const deps = makeDeps({
         loadPriorEvents: vi.fn().mockResolvedValue(priorEvents),

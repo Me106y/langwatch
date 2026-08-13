@@ -9,11 +9,11 @@ import { ScenarioRunStatus } from "~/server/scenarios/scenario-event.enums";
 import { SIMULATION_RUN_EVENT_TYPES } from "../../schemas/constants";
 import type { SimulationProcessingEvent } from "../../schemas/events";
 import { simulationRunExecutionPM } from "../index";
-import {
-  buildSimulationRunEventView,
-  type SimulationRunProcessEventView,
-} from "../simulationRunExecution.process";
-import type { SimulationRunExecutionProcessState } from "../simulationRunExecutionProcess.types";
+import { buildSimulationRunEventView } from "../simulationRunExecution.process";
+import type {
+  SimulationRunExecutionProcessState,
+  SimulationRunProcessEventView,
+} from "../simulationRunExecutionProcess.types";
 import {
   CANCEL_GRACE_MS,
   SIMULATION_RUN_EXECUTION_PROCESS_NAME,

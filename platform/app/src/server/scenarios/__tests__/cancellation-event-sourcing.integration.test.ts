@@ -179,7 +179,7 @@ describe("Event-sourcing cancellation (real Redis)", () => {
         publishCancellation: async ({ projectId, scenarioRunId }) => {
           await publishCancellation({
             publisher: redis,
-            message: { projectId, scenarioRunId, batchRunId: null },
+            message: { projectId, scenarioRunId, batchRunId: undefined },
           });
         },
       });
