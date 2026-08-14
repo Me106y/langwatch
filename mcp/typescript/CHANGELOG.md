@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/langwatch/langwatch/compare/mcp-server@v2.0.0...mcp-server@v2.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **traces:** reject pageOffset, and pin the updated-axis scroll to a snapshot ([#6812](https://github.com/langwatch/langwatch/issues/6812)) ([e490008](https://github.com/langwatch/langwatch/commit/e49000891dbd58fe0e033230dfc83c380e1b1615))
+
 ## [2.0.0](https://github.com/langwatch/langwatch/compare/mcp-server@v1.0.0...mcp-server@v2.0.0) (2026-08-07)
 
 
