@@ -435,7 +435,7 @@ function bearerAccessToken(
  *
  * Spec: specs/ai-governance/cli-onboarding/me-credentials.feature
  */
-async function ensureActiveOrgMemberOr403(
+export async function ensureActiveOrgMemberOr403(
   c: Context,
   tokenRecord: { user_id: string; organization_id: string },
 ): Promise<Response | null> {
@@ -451,11 +451,20 @@ async function ensureActiveOrgMemberOr403(
           organizationId: tokenRecord.organization_id,
         },
       },
-      select: { userId: true },
+      select: { userId: true, disabledAt: true },
     }),
   ]);
 
-  const active = !!user && user.deactivatedAt === null && !!membership;
+  // `disabledAt` is checked, not just membership existence: since ADR-094
+  // Decision 4 a directory offboarding disables the membership instead of
+  // switching the whole account off, so a person removed from this
+  // organization would otherwise keep minting its keys while the global flag
+  // stayed null for the sake of their other organizations.
+  const active =
+    !!user &&
+    user.deactivatedAt === null &&
+    !!membership &&
+    membership.disabledAt === null;
   if (active) return null;
 
   // Sever the stale session before refusing: drop the presented access token
@@ -485,7 +494,9 @@ async function ensureActiveOrgMemberOr403(
         ? "user_missing"
         : user.deactivatedAt !== null
           ? "user_deactivated"
-          : "not_org_member",
+          : membership
+            ? "membership_disabled"
+            : "not_org_member",
     },
     "[auth-cli] refusing key-minting request from non-active org member; session revoked",
   );
@@ -1921,7 +1932,10 @@ secured.access(cliApproveAuth).post("/approve", async (c: Context) => {
   }
   const { user_code, organization_id, project_id } = parsed.data;
 
-  // Verify caller is a member of the org they're issuing a key for.
+  // Verify caller is an ACTIVE member of the org they're issuing a key for.
+  // A disabled membership is an ended membership (ADR-094 Decision 4) — the
+  // row still exists so history and seat accounting survive, so existence
+  // alone is not the question.
   const membership = await prisma.organizationUser.findUnique({
     where: {
       userId_organizationId: {
@@ -1930,7 +1944,7 @@ secured.access(cliApproveAuth).post("/approve", async (c: Context) => {
       },
     },
   });
-  if (!membership) {
+  if (!membership || membership.disabledAt !== null) {
     return c.json(
       {
         error: "forbidden",

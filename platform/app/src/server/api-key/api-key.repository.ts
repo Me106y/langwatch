@@ -354,6 +354,12 @@ export class ApiKeyRepository {
     });
   }
 
+  /**
+   * An ACTIVE membership, not merely a row. Since ADR-094 Decision 4 a
+   * directory offboarding disables the membership rather than switching the
+   * whole account off (so the person's other organizations survive), which
+   * makes "the row exists" the wrong question for an access decision.
+   */
   async findOrgMembership({
     userId,
     organizationId,
@@ -362,7 +368,7 @@ export class ApiKeyRepository {
     organizationId: string;
   }): Promise<{ userId: string } | null> {
     return this.prisma.organizationUser.findFirst({
-      where: { userId, organizationId },
+      where: { userId, organizationId, disabledAt: null },
       select: { userId: true },
     });
   }

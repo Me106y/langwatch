@@ -19,16 +19,26 @@ function createMockPrisma() {
   };
   const organizationUser = {
     findUnique: vi.fn(),
-    findMany: vi.fn(),
-    count: vi.fn(),
+    findMany: vi.fn().mockResolvedValue([]),
+    // The membership lifecycle counts what is left after the change; a
+    // single-organization person has nothing, which is what escalates the
+    // account flag (ADR-094 Decision 4).
+    count: vi.fn().mockResolvedValue(0),
     create: vi.fn(),
     delete: vi.fn().mockResolvedValue({}),
+    deleteMany: vi.fn().mockResolvedValue({ count: 1 }),
+    updateMany: vi.fn().mockResolvedValue({ count: 1 }),
   };
   const mock = {
     user: {
       findUnique: vi.fn(),
       create: vi.fn(),
       update: vi.fn(),
+      updateMany: vi.fn().mockResolvedValue({ count: 1 }),
+    },
+    providerIdentityLink: {
+      findMany: vi.fn().mockResolvedValue([]),
+      create: vi.fn(),
     },
     organizationUser,
     roleBinding,
@@ -38,9 +48,15 @@ function createMockPrisma() {
       findMany: vi.fn().mockResolvedValue([]),
       deleteMany: vi.fn().mockResolvedValue({ count: 0 }),
     },
+    // Prisma accepts both an array of operations and an interactive
+    // callback; the membership lifecycle uses the callback form.
     $transaction: vi
       .fn()
-      .mockImplementation((ops: unknown[]) => Promise.all(ops)),
+      .mockImplementation((opsOrCallback: unknown) =>
+        typeof opsOrCallback === "function"
+          ? (opsOrCallback as (tx: unknown) => Promise<unknown>)(mock)
+          : Promise.all(opsOrCallback as unknown[]),
+      ),
   };
   return mock as unknown as Parameters<typeof ScimService.create>[0];
 }
@@ -304,17 +320,12 @@ describe("ScimService", () => {
 
   describe("deleteUser()", () => {
     describe("when the user belongs to the organization", () => {
-      it("deactivates the user (soft delete)", async () => {
-        const user = buildMockUser();
+      it("removes the membership, and deactivates the account only because it was their last", async () => {
         (
           prisma.organizationUser.findUnique as ReturnType<typeof vi.fn>
         ).mockResolvedValue({
           userId: "user-1",
           organizationId: "org-1",
-        });
-        (prisma.user.update as ReturnType<typeof vi.fn>).mockResolvedValue({
-          ...user,
-          deactivatedAt: new Date(),
         });
 
         const result = await service.deleteUser({
@@ -323,10 +334,29 @@ describe("ScimService", () => {
         });
 
         expect(result).toBeNull();
-        expect(prisma.user.update).toHaveBeenCalledWith({
-          where: { id: "user-1" },
+        expect(prisma.organizationUser.deleteMany).toHaveBeenCalledWith({
+          where: { userId: "user-1", organizationId: "org-1" },
+        });
+        expect(prisma.user.updateMany).toHaveBeenCalledWith({
+          where: { id: "user-1", deactivatedAt: null },
           data: { deactivatedAt: expect.any(Date) },
         });
+      });
+
+      it("leaves the account alone when the person is still active elsewhere", async () => {
+        (
+          prisma.organizationUser.findUnique as ReturnType<typeof vi.fn>
+        ).mockResolvedValue({
+          userId: "user-1",
+          organizationId: "org-1",
+        });
+        (
+          prisma.organizationUser.count as ReturnType<typeof vi.fn>
+        ).mockResolvedValue(1);
+
+        await service.deleteUser({ id: "user-1", organizationId: "org-1" });
+
+        expect(prisma.user.updateMany).not.toHaveBeenCalled();
       });
     });
 
@@ -348,17 +378,14 @@ describe("ScimService", () => {
 
   describe("updateUser()", () => {
     describe("when deactivating via PATCH", () => {
-      it("calls deactivate on the user", async () => {
+      it("disables the membership in this organization", async () => {
         const user = buildMockUser();
         (
           prisma.organizationUser.findUnique as ReturnType<typeof vi.fn>
         ).mockResolvedValue({
           userId: "user-1",
           organizationId: "org-1",
-        });
-        (prisma.user.update as ReturnType<typeof vi.fn>).mockResolvedValue({
-          ...user,
-          deactivatedAt: new Date(),
+          disabledAt: null,
         });
         (prisma.user.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
           ...user,
@@ -374,9 +401,13 @@ describe("ScimService", () => {
           },
         });
 
-        expect(prisma.user.update).toHaveBeenCalledWith({
-          where: { id: "user-1" },
-          data: { deactivatedAt: expect.any(Date) },
+        expect(prisma.organizationUser.updateMany).toHaveBeenCalledWith({
+          where: {
+            userId: "user-1",
+            organizationId: "org-1",
+            disabledAt: null,
+          },
+          data: { disabledAt: expect.any(Date) },
         });
         expect(result).toHaveProperty("active", false);
       });
@@ -385,17 +416,18 @@ describe("ScimService", () => {
 
   describe("replaceUser()", () => {
     describe("when replacing with active: false", () => {
-      it("deactivates the user", async () => {
+      it("disables the membership in this organization", async () => {
         const user = buildMockUser();
         (
           prisma.organizationUser.findUnique as ReturnType<typeof vi.fn>
         ).mockResolvedValue({
           userId: "user-1",
           organizationId: "org-1",
+          disabledAt: null,
         });
-        (prisma.user.update as ReturnType<typeof vi.fn>)
-          .mockResolvedValueOnce(user) // updateProfile
-          .mockResolvedValueOnce({ ...user, deactivatedAt: new Date() }); // deactivate
+        (prisma.user.update as ReturnType<typeof vi.fn>).mockResolvedValue(
+          user,
+        );
         (prisma.user.findUnique as ReturnType<typeof vi.fn>).mockResolvedValue({
           ...user,
           deactivatedAt: new Date(),
