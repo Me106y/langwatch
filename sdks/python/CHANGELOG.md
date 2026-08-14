@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.2.1](https://github.com/langwatch/langwatch/compare/python-sdk@v1.2.0...python-sdk@v1.2.1) (2026-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **spend:** POST /api/gateway/v1/virtual-keys refuses an organization- or team-scoped key, and a key scoped to more than one project, when it does not carry trace_project_id and the organization has projects to choose from. Send trace_project_id, or scope the key to exactly one project. Existing keys are unaffected until they are next edited.
+
+### Features
+
+* **gateway:** view traces from a virtual key, and teams/projects management in both SDKs ([#6807](https://github.com/langwatch/langwatch/issues/6807)) ([2c55fe3](https://github.com/langwatch/langwatch/commit/2c55fe30ee1dbd89fd2877cede5af645fe49889e))
+* **sdk:** judge n-way target comparisons from the experiment SDKs ([#6863](https://github.com/langwatch/langwatch/issues/6863)) ([9c34d3c](https://github.com/langwatch/langwatch/commit/9c34d3c37418ecf6d29b0e521d66fca0661a45d8))
+* **spend:** one filter vocabulary on both reads, and a grouping that refuses to lie ([#6656](https://github.com/langwatch/langwatch/issues/6656)) ([dd3be46](https://github.com/langwatch/langwatch/commit/dd3be46de9aa70d40f256b26a4ee49a1ec753e53))
+
+
+### Bug Fixes
+
+* **clickhouse:** three audit defects — dropped EventVersion, decimal money sums, unbounded events read ([#6627](https://github.com/langwatch/langwatch/issues/6627)) ([984dd6d](https://github.com/langwatch/langwatch/commit/984dd6d3dddef5d053a99698544d6422feebbf23))
+* **python-sdk:** a refused call keeps the platform's own explanation ([#6837](https://github.com/langwatch/langwatch/issues/6837)) ([2576dbd](https://github.com/langwatch/langwatch/commit/2576dbd96617f44c6bf2945e65c360ec54425c55))
+* **traces:** reject pageOffset, and pin the updated-axis scroll to a snapshot ([#6812](https://github.com/langwatch/langwatch/issues/6812)) ([e490008](https://github.com/langwatch/langwatch/commit/e49000891dbd58fe0e033230dfc83c380e1b1615))
+
+
+### Miscellaneous
+
+* **deps-dev:** bump pytest-asyncio from 0.21.2 to 1.4.0 in /sdks/python ([#6539](https://github.com/langwatch/langwatch/issues/6539)) ([1c42334](https://github.com/langwatch/langwatch/commit/1c42334dbf44ae4effec385e4f81dbd6515319f9))
+* **deps-dev:** bump pytest-asyncio in /sdks/python ([1c42334](https://github.com/langwatch/langwatch/commit/1c42334dbf44ae4effec385e4f81dbd6515319f9))
+* **deps:** bump the minor-and-patch group across 1 directory with 16 updates ([#6873](https://github.com/langwatch/langwatch/issues/6873)) ([b8414ec](https://github.com/langwatch/langwatch/commit/b8414ec3c0aac75c132de1dbac8de397cb5451bc))
+* **release:** pin python-sdk at 1.2.1 ([#6767](https://github.com/langwatch/langwatch/issues/6767)) ([d91dc55](https://github.com/langwatch/langwatch/commit/d91dc550e9408e1b274948e922accd649955f93d))
+
 ## [1.2.0](https://github.com/langwatch/langwatch/compare/python-sdk@v1.1.0...python-sdk@v1.2.0) (2026-08-07)
 
 
