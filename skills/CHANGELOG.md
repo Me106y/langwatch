@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/langwatch/langwatch/compare/skills@v1.1.0...skills@v1.2.0) (2026-08-14)
+
+
+### Features
+
+* **sdk:** judge n-way target comparisons from the experiment SDKs ([#6863](https://github.com/langwatch/langwatch/issues/6863)) ([9c34d3c](https://github.com/langwatch/langwatch/commit/9c34d3c37418ecf6d29b0e521d66fca0661a45d8))
+
 ## [1.1.0](https://github.com/langwatch/langwatch/compare/skills@v1.0.0...skills@v1.1.0) (2026-08-05)
 
 
