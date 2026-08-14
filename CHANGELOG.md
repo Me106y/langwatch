@@ -1,5 +1,34 @@
 # Changelog
 
+## [3.14.0](https://github.com/langwatch/langwatch/compare/langwatch@v3.13.0...langwatch@v3.14.0) (2026-08-14)
+
+
+### Features
+
+* **haven:** machine-wide resource governance for parallel agents ([#6623](https://github.com/langwatch/langwatch/issues/6623)) ([2cf718b](https://github.com/langwatch/langwatch/commit/2cf718b2b5d5cdf936b825e82403906a3e37f37f))
+* **haven:** reap leaked testcontainers and tighten shared-resource defaults ([#6944](https://github.com/langwatch/langwatch/issues/6944)) ([269a56e](https://github.com/langwatch/langwatch/commit/269a56ec79295beabd3f7dcfc9d8a76df4bdfc82))
+* **haven:** revamp the hub — whole-machine RAM, worktrees, cleanup, reaping monitor ([#6989](https://github.com/langwatch/langwatch/issues/6989)) ([d8cac76](https://github.com/langwatch/langwatch/commit/d8cac76167c002c0fcdb377d8fadda4dff436a49))
+* **ops:** one writer publishes the ops snapshot every pod serves, and the scheduler gets controls (ADR-090, ADR-091) ([#6859](https://github.com/langwatch/langwatch/issues/6859)) ([37edf25](https://github.com/langwatch/langwatch/commit/37edf25a79de8fba9489488cc4c2c3c18244a71d))
+
+
+### Bug Fixes
+
+* **agents:** test an HTTP agent through the engine that runs it ([#6942](https://github.com/langwatch/langwatch/issues/6942)) ([251bf0c](https://github.com/langwatch/langwatch/commit/251bf0c23edbf89120372715dc663cb17e5ad428))
+* **app:** stop the nested-update storm that wedges navigation after a prompt chat (React [#185](https://github.com/langwatch/langwatch/issues/185)) ([#6931](https://github.com/langwatch/langwatch/issues/6931)) ([5ad9b57](https://github.com/langwatch/langwatch/commit/5ad9b57f897b16e4948cd8e585e2f2541e3070d5))
+* **ci:** re-arm a dead ast-grep rule and repoint stale post-restructure paths ([#6892](https://github.com/langwatch/langwatch/issues/6892)) ([4a88619](https://github.com/langwatch/langwatch/commit/4a88619d46f30f14212d8e366c83855030249db4))
+* **event-sourcing:** confirm worker deaths before parking a group ([#6922](https://github.com/langwatch/langwatch/issues/6922)) ([a6cd99a](https://github.com/langwatch/langwatch/commit/a6cd99a0df08798eeafc81bfb942ae41c37242c8))
+* **readme:** repair nine dead links and check them in CI ([#6878](https://github.com/langwatch/langwatch/issues/6878)) ([3d7448b](https://github.com/langwatch/langwatch/commit/3d7448b21a33568b41d61fcdd9fc92bf9bf48414))
+
+
+### Miscellaneous
+
+* **deps:** upgrade Prisma to 7.9.1 and tRPC to 11 (TanStack Query 5) ([#6697](https://github.com/langwatch/langwatch/issues/6697)) ([5f3122a](https://github.com/langwatch/langwatch/commit/5f3122a525a404c4ff136337dfeec81bbd4fdc9e))
+
+
+### Code Refactoring
+
+* **redis:** make Redis an owned client, not a module singleton ([#6829](https://github.com/langwatch/langwatch/issues/6829)) ([2f9e913](https://github.com/langwatch/langwatch/commit/2f9e913b7923972760f443712accc13f81975499))
+
 ## [3.13.0](https://github.com/langwatch/langwatch/compare/langwatch@v3.12.0...langwatch@v3.13.0) (2026-08-13)
 
 
